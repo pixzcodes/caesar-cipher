@@ -1,21 +1,15 @@
-#Notes
-# First i will create an array with the aplhabet that will be shifted 
-# by the shift number called the shifted_alphabet
-# Then i will compare each position of the shifted_alphabet to the 
-# letters in the string
-# I think if i asign each letter of the alphabet a number 0-25 then i
-# can asign the letters in the string a shifted alphabet number to change to 
-# Need to remember to add a caps check
-
+# I have decided to go with a different approach by using a hash with each letter
+# of the alphabet asigned to a number 
 
 def caesar_cipher (string, shift_value)
-    shifted_alphabet = ('a'..'z').to_a
-    i = 0
-    while i < shift_value do
-        shifted_alphabet.push(shifted_alphabet.shift)
-        i += 1
+    numbered_alphabet = {a: 1, b: 2, c: 3, d: 4, e: 5, f: 6, g: 7, h: 8, i: 9, j: 10, k: 11, l: 12, m: 13, n: 14, o: 15, p: 16, q: 17, r: 18, s: 19, t: 20, u: 21, v: 22, w: 23, x: 24, y: 25, z: 26}
+    numbered_alphabet.transform_keys! {|key| key.to_s}
+    shifted_string_arr = [] # array for encrypted string letters to get pushed to
+    string.split(//).each do | x | 
+        numbered_alphabet.fetch(x)
+
     end
-    
+
 end
 
 caesar_cipher("nothing",2)
