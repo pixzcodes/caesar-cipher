@@ -6,10 +6,16 @@ def caesar_cipher (string, shift_value)
     numbered_alphabet.transform_keys! {|key| key.to_s}
     shifted_string_arr = [] # array for encrypted string letters to get pushed to
     string.split(//).each do | x | 
-        numbered_alphabet.fetch(x)
+        alph_num = numbered_alphabet.fetch(x.downcase) # Find the number of the letter
+        if shift_value + alph_num > 26 # Make sure it wraps arround
+            alph_num -= 26
+        end
 
+        shifted_string_arr.push(numbered_alphabet.key(shift_value + alph_num))
     end
-
+    puts shifted_string_arr.join('')
 end
 
+# Tests
+puts "Normal string with a shift value of 2"
 caesar_cipher("nothing",2)
